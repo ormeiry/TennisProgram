@@ -104,8 +104,8 @@ def randChoice(plist):
 
 def doStage(pInTour):
     winnersList = []
-    length = len(pInTour) + 1
-    if (length == 3):
+    length = len(pInTour)
+    if (length == 2):
         winner = doMatch(pInTour[0], pInTour[1])
         winnersList.append(pInTour[winner-1])
         return winnersList
@@ -206,41 +206,46 @@ def removePlayer(plist):
 
 def menu(plist):
     dash = "-" * 80
-    while(True):
-        print("Tennis menu, choose a num then press the enter key:")
-        print(dash)
-        print("1. Print players table(for reverse order enter negative integer)")
-        print("2. Print one Player by entering his table position")
-        print("3. Add one Player to the table")
-        print("4. Remove last place player")
-        print("5. Sort the players table by points")
-        print("6. Create a new tournament")
-        print("7. Exit program")
-        choice = int(input("Your Choice: "))
-        print(dash)
-        if choice == 1:
-            howMany = int(input("How many players you want to see? "))
+    try:
+        while(True):
+            print("Tennis menu, choose a num then press the enter key:")
             print(dash)
-            printPlayers(plist, howMany)
+            print("1. Print players table(for reverse order enter negative integer)")
+            print("2. Print one Player by entering his table position")
+            print("3. Add one Player to the table")
+            print("4. Remove last place player")
+            print("5. Sort the players table by points")
+            print("6. Create a new tournament")
+            print("7. Exit program")
+            choice = int(input("Your Choice: "))
             print(dash)
-        elif choice == 2:
-            position = int(input("Enter the players position in table: "))
-            print(dash)
-            printPlayer(position - 1)
-            print(dash)
-        elif choice == 3:
-            addPlayer()
-        elif choice == 4:
-            removePlayer(plist)
-        elif choice == 5:
-            sortPlayers(plist)
-        elif choice == 6:
-            tName = input("Enter Tournament name: ")
-            doTournament(players, tName)
+            if choice == 1:
+                howMany = int(input("How many players you want to see? "))
+                print(dash)
+                printPlayers(plist, howMany)
+                print(dash)
+            elif choice == 2:
+                position = int(input("Enter the players position in table: "))
+                print(dash)
+                printPlayer(position - 1)
+                print(dash)
+            elif choice == 3:
+                addPlayer()
+            elif choice == 4:
+                removePlayer(plist)
+            elif choice == 5:
+                sortPlayers(plist)
+            elif choice == 6:
+                tName = input("Enter Tournament name: ")
+                doTournament(players, tName)
+                print("-" * 50)
+            elif choice == 7:
+                break
             print("-" * 50)
-        else:
-            break
-        print("-" * 50)
+
+    except ValueError:
+        print("Invalid, lets try again")
+        menu(players)
     return
 
 
