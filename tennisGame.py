@@ -151,6 +151,7 @@ def doTournament(plist, name):
 
     print(f"{tourList[0][0]} has won the tournament!!")
     tourList[0][3] += 10
+    sortPlayers(players)
     return tourList[0]
 
 
@@ -195,6 +196,7 @@ def addPlayer():
     pointsWon = int(input("Enter number of points: "))
     player = [name, bdate, matchesPlayed, pointsWon]
     players.append(player)
+    sortPlayers(players)
     return player
 
 
@@ -214,9 +216,8 @@ def menu(plist):
             print("2. Print one Player by entering his table position")
             print("3. Add one Player to the table")
             print("4. Remove last place player")
-            print("5. Sort the players table by points")
-            print("6. Create a new tournament")
-            print("7. Exit program")
+            print("5. Create a new tournament")
+            print("6. Exit program")
             choice = int(input("Your Choice: "))
             print(dash)
             if choice == 1:
@@ -234,12 +235,10 @@ def menu(plist):
             elif choice == 4:
                 removePlayer(plist)
             elif choice == 5:
-                sortPlayers(plist)
-            elif choice == 6:
                 tName = input("Enter Tournament name: ")
                 doTournament(players, tName)
                 print("-" * 50)
-            elif choice == 7:
+            elif choice == 6:
                 break
             print("-" * 50)
 
